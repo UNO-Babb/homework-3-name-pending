@@ -3,10 +3,13 @@
 
 # Write a flask app board game that use hexagon tiles instead of square tiles which allow pieces on the board to move in any direction. The board game will have 3 unique attributes that are dangerous for certain pieces. These attributes should be applied to groups of tiles called zones. The pieces will also have these attributes, which if a piece and a zone that piece is going to travel to are the same, that piece will be safe. If a piece and a zone have opposite attributes they are two outcomes. If the piece contains an attribute that is strong against the zone's attribute. That zone is neutralized and acts as any normal tile. If it is the other way around, the piece is sent back to the beginning. These three attributes can be color coded red, blue and green. This game will also have a dice rolling mechanic. For example, if a dice rolls 3, a piece is moved by 3 tiles in any direction the player wants. Along the board game, there should be spots where if a piece lands on that tile, it creates a zone of that pieces attribute. To beat the game, a piece must reach the final tile. This tile can be colored yellow. However, there is another requirement. Pieces must collect an item. There will be 3 of these items placed on random tiles. There are no restrictions on how many items a piece can get. If a piece is sent back to the beginning, that piece will lose those items, and those items are place in new spots. If a piece reaches the final tile and does not have an item, they are sent back to the beginning.
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import random
 
 app = Flask(__name__)
+@app.route("/")
+def index():
+    return render_template('index.html')
 
 # Initialize board with hexagonal tiles and zones
 NUM_TILES = 50  # adjust as needed for board size
